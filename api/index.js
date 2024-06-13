@@ -3,6 +3,7 @@ import {query} from "../db.js"
 import cors from 'cors'
 const PORT = process.env.PORT || 8080
 const app = express();
+app.use(express.json());
 app.use(cors())
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
@@ -36,10 +37,12 @@ app.get("/getRevs",async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }) 
-app.post('/setup',async (req,res) =>{
+
+app.post('/setClub',async (req,res) =>{
+  console.log(req.body)
   try {
-    const {description, name, photo, weight, extInfo} = req.body
-    await query('INSERT INTO testimoncals (description, name, photo, weight, extInfo) VALUES ($1, $2, $3, $4, $5)', [description, name, photo, weight, extInfo]);
+    const {address, description, name, network, photo, typeNetwork} = req.body
+    await query('INSERT INTO locations (address, description, name, network, photo, typeNetwork) VALUES ($1, $2, $3, $4, $5, $6)', [address, description, name, network, photo, typeNetwork]);
     res.status(200).send({message : "succsess !!!"});
   } catch (error) {
     console.error('Error querying database:', error);
