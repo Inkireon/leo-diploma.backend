@@ -39,7 +39,7 @@ app.get("/getRevs",async (req, res) => {
 app.get('/setup',async (req,res) =>{
   try {
     const {description, name, photo, weight, extInfo} = req.body
-    await query('INSERT INTO Testimoncals (description, name, photo, weight, extInfo) VALUES ($1, $2)', [description, name, photo, weight, extInfo]);
+    await query('INSERT INTO testimoncals (description, name, photo, weight, extInfo) VALUES ($1, $2)', [description, name, photo, weight, extInfo]);
     res.status(200).send({message : "succsess !!!"});
   } catch (error) {
     console.error('Error querying database:', error);
