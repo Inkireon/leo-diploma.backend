@@ -27,5 +27,13 @@ app.get("/getSlides",async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }) 
-
+app.get("/getRevs",async (req, res) => {
+  try {
+    const data2 = await query('SELECT * FROM reviews');
+    res.json(data2.rows);
+  } catch (error) {
+    console.error('Error querying database:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}) 
 
