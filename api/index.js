@@ -53,12 +53,14 @@ app.get( "/getRevs",async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 
+
 }
 
 );
 
 
 app.post( '/setClub',async (req,res) => {
+
 
   console.log(req.body)
 
