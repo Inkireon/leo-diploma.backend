@@ -36,7 +36,7 @@ app.get("/getRevs",async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }) 
-app.get('/setup',async (req,res) =>{
+app.post('/setup',async (req,res) =>{
   try {
     const {description, name, photo, weight, extInfo} = req.body
     await query('INSERT INTO testimoncals (description, name, photo, weight, extInfo) VALUES ($1, $2)', [description, name, photo, weight, extInfo]);
