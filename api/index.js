@@ -65,8 +65,8 @@ app.post( '/setClub',async (req,res) => {
   console.log(req.body)
 
   try {
-    const {address, description, name, network, photo, typeNetwork} = req.body
-    await query('INSERT INTO locations (address, description, name, network, photo, typeNetwork) VALUES ($1, $2, $3, $4, $5, $6)', [address, description, name, network, photo, typeNetwork]);
+    const {address, description, name, network, photo, typenetwork} = req.body
+    await query('INSERT INTO locations (address, description, name, network, photo, typeNetwork) VALUES ($1, $2, $3, $4, $5, $6)', [address, description, name, network, photo, typenetwork]);
     res.status(200).send({message : "succsess !!!"});
   } catch (error) {
     console.error('Error querying database:', error);
