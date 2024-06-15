@@ -76,3 +76,42 @@ app.post( '/setClub',async (req,res) => {
 }
 
 );
+
+app.delete('/deleteClub', async (req, res) => {
+
+  try {
+
+    const { name } = req.body;
+
+    if (!name) {
+
+
+      return res.status(400).send({ message: 'Name is required' });
+    
+    
+    }
+
+    const result = await query('DELETE FROM locations WHERE name = $1', [name]);
+
+    if (result.rowCount === 0) {
+
+
+      return res.status(404).send({ message: 'Location not found' });
+    
+    
+    }
+
+    res.status(200).send({ message: 'Location deleted successfully' });
+  
+  
+  } catch (error) {
+    
+    console.error('Error querying database:', error);
+    
+    res.status(500).send('Internal Server Error');
+  
+  }
+
+}
+
+);
